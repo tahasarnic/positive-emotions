@@ -1,0 +1,491 @@
+# Installing required packages
+install.packages("reactable")
+install.packages("webshot")
+webshot::install_phantomjs()
+install.packages("htmlwidgets")
+
+# Importing required packages
+library(reactable)
+library(webshot)
+library(htmlwidgets)
+
+# Importing datasets
+within_and_across <- read.csv("C:/Users/cansu.hurses/Desktop/within_and_across_table.csv")
+within_ratio <- read.csv("C:/Users/cansu.hurses/Desktop/within_ratio_table.csv")
+across_ratio <- read.csv("C:/Users/cansu.hurses/Desktop/across_ratio_table.csv")
+
+# Determining colors of table
+sticky_style <- list(backgroundColor = "#f7f7f7")
+
+colors <- function(x){
+  rgb(colorRamp(c("#f94144", "#f9c74f"))(x), maxColorValue = 255)
+}
+
+colors2 <- function(x){
+  rgb(colorRamp(c("#38a3a5", "#80ed99"))(x), maxColorValue = 255)
+}
+
+# Interactive within and across table
+within_and_across_table <- reactable(within_and_across,
+          defaultColDef = colDef(
+            align = "center",
+            minWidth = 70,
+            headerStyle = list(background = "#f7f7f8")),
+          bordered = TRUE,
+          highlight = TRUE,
+          filterable = TRUE, 
+          searchable = TRUE,
+          resizable = TRUE,
+          pagination = FALSE,
+          columns = list(
+            Emotion = colDef(minWidth = 150,
+                             style = list(position = "sticky", left = 0, background = "#f7f7f8", zIndex = 1)),
+            in_Count_1 = colDef(name = "Count in Cluster 1", filterable = FALSE),
+            in_Count_2 = colDef(name = "Count in Cluster 2", filterable = FALSE),
+            in_Count_3 = colDef(name = "Count in Cluster 3", filterable = FALSE),
+            in_Count_4 = colDef(name = "Count in Cluster 4", filterable = FALSE),
+            in_Count_5 = colDef(name = "Count in Cluster 5", filterable = FALSE),
+            in_Count_6 = colDef(name = "Count in Cluster 6", filterable = FALSE),
+            in_Count_7 = colDef(name = "Count in Cluster 7", filterable = FALSE),
+            in_Count_8 = colDef(name = "Count in Cluster 8", filterable = FALSE),
+            in_Count_9 = colDef(name = "Count in Cluster 9", filterable = FALSE),
+            in_Count_10 = colDef(name = "Count in Cluster 10", filterable = FALSE),
+            in_Count_11 = colDef(name = "Count in Cluster 11", filterable = FALSE),
+            in_Count_12 = colDef(name = "Count in Cluster 12", filterable = FALSE),
+            in_Count_13 = colDef(name = "Count in Cluster 13", filterable = FALSE),
+            in_Count_14 = colDef(name = "Count in Cluster 14", filterable = FALSE),
+            in_Count_15 = colDef(name = "Count in Cluster 15", filterable = FALSE),
+            in_Count_16 = colDef(name = "Count in Cluster 16", filterable = FALSE),
+            in_Count_17 = colDef(name = "Count in Cluster 17", filterable = FALSE),
+            in_Ratio_1 = colDef(name = "Ratio in Cluster 1", filterable = FALSE, 
+                                style = function(value) {
+                                  normalized <- (value - min(within_and_across$in_Ratio_1)) / (max(within_and_across$in_Ratio_1) - min(within_and_across$in_Ratio_1))
+                                  color <- colors(normalized)
+                                  list(background = color)}),
+            in_Ratio_2 = colDef(name = "Ratio in Cluster 2", filterable = FALSE,
+                                style = function(value) {
+                                  normalized <- (value - min(within_and_across$in_Ratio_2)) / (max(within_and_across$in_Ratio_2) - min(within_and_across$in_Ratio_2))
+                                  color <- colors(normalized)
+                                  list(background = color)}),
+            in_Ratio_3 = colDef(name = "Ratio in Cluster 3", filterable = FALSE,
+                                style = function(value) {
+                                  normalized <- (value - min(within_and_across$in_Ratio_3)) / (max(within_and_across$in_Ratio_3) - min(within_and_across$in_Ratio_3))
+                                  color <- colors(normalized)
+                                  list(background = color)}),
+            in_Ratio_4 = colDef(name = "Ratio in Cluster 4", filterable = FALSE,
+                                style = function(value) {
+                                  normalized <- (value - min(within_and_across$in_Ratio_4)) / (max(within_and_across$in_Ratio_4) - min(within_and_across$in_Ratio_4))
+                                  color <- colors(normalized)
+                                  list(background = color)}),
+            in_Ratio_5 = colDef(name = "Ratio in Cluster 5", filterable = FALSE,
+                                style = function(value) {
+                                  normalized <- (value - min(within_and_across$in_Ratio_5)) / (max(within_and_across$in_Ratio_5) - min(within_and_across$in_Ratio_5))
+                                  color <- colors(normalized)
+                                  list(background = color)}),
+            in_Ratio_6 = colDef(name = "Ratio in Cluster 6", filterable = FALSE,
+                                style = function(value) {
+                                  normalized <- (value - min(within_and_across$in_Ratio_6)) / (max(within_and_across$in_Ratio_6) - min(within_and_across$in_Ratio_6))
+                                  color <- colors(normalized)
+                                  list(background = color)}),
+            in_Ratio_7 = colDef(name = "Ratio in Cluster 7", filterable = FALSE,
+                                style = function(value) {
+                                  normalized <- (value - min(within_and_across$in_Ratio_7)) / (max(within_and_across$in_Ratio_7) - min(within_and_across$in_Ratio_7))
+                                  color <- colors(normalized)
+                                  list(background = color)}),
+            in_Ratio_8 = colDef(name = "Ratio in Cluster 8", filterable = FALSE,
+                                style = function(value) {
+                                  normalized <- (value - min(within_and_across$in_Ratio_8)) / (max(within_and_across$in_Ratio_8) - min(within_and_across$in_Ratio_8))
+                                  color <- colors(normalized)
+                                  list(background = color)}),
+            in_Ratio_9 = colDef(name = "Ratio in Cluster 9", filterable = FALSE,
+                                style = function(value) {
+                                  normalized <- (value - min(within_and_across$in_Ratio_9)) / (max(within_and_across$in_Ratio_9) - min(within_and_across$in_Ratio_9))
+                                  color <- colors(normalized)
+                                  list(background = color)}),
+            in_Ratio_10 = colDef(name = "Ratio in Cluster 10", filterable = FALSE,
+                                 style = function(value) {
+                                   normalized <- (value - min(within_and_across$in_Ratio_10)) / (max(within_and_across$in_Ratio_10) - min(within_and_across$in_Ratio_10))
+                                   color <- colors(normalized)
+                                   list(background = color)}),
+            in_Ratio_11 = colDef(name = "Ratio in Cluster 11", filterable = FALSE,
+                                 style = function(value) {
+                                   normalized <- (value - min(within_and_across$in_Ratio_11)) / (max(within_and_across$in_Ratio_11) - min(within_and_across$in_Ratio_11))
+                                   color <- colors(normalized)
+                                   list(background = color)}),
+            in_Ratio_12 = colDef(name = "Ratio in Cluster 12", filterable = FALSE,
+                                 style = function(value) {
+                                   normalized <- (value - min(within_and_across$in_Ratio_12)) / (max(within_and_across$in_Ratio_12) - min(within_and_across$in_Ratio_12))
+                                   color <- colors(normalized)
+                                   list(background = color)}),
+            in_Ratio_13 = colDef(name = "Ratio in Cluster 13", filterable = FALSE,
+                                 style = function(value) {
+                                   normalized <- (value - min(within_and_across$in_Ratio_13)) / (max(within_and_across$in_Ratio_13) - min(within_and_across$in_Ratio_13))
+                                   color <- colors(normalized)
+                                   list(background = color)}),
+            in_Ratio_14 = colDef(name = "Ratio in Cluster 14", filterable = FALSE,
+                                 style = function(value) {
+                                   normalized <- (value - min(within_and_across$in_Ratio_14)) / (max(within_and_across$in_Ratio_14) - min(within_and_across$in_Ratio_14))
+                                   color <- colors(normalized)
+                                   list(background = color)}),
+            in_Ratio_15 = colDef(name = "Ratio in Cluster 15", filterable = FALSE,
+                                 style = function(value) {
+                                   normalized <- (value - min(within_and_across$in_Ratio_15)) / (max(within_and_across$in_Ratio_15) - min(within_and_across$in_Ratio_15))
+                                   color <- colors(normalized)
+                                   list(background = color)}),
+            in_Ratio_16 = colDef(name = "Ratio in Cluster 16", filterable = FALSE,
+                                 style = function(value) {
+                                   normalized <- (value - min(within_and_across$in_Ratio_16)) / (max(within_and_across$in_Ratio_16) - min(within_and_across$in_Ratio_16))
+                                   color <- colors(normalized)
+                                   list(background = color)}),
+            in_Ratio_17 = colDef(name = "Ratio in Cluster 17", filterable = FALSE,
+                                 style = function(value) {
+                                   normalized <- (value - min(within_and_across$in_Ratio_17)) / (max(within_and_across$in_Ratio_17) - min(within_and_across$in_Ratio_17))
+                                   color <- colors(normalized)
+                                   list(background = color)}),
+            across_Count_1 = colDef(name = "Count for Cluster 1", filterable = FALSE),
+            across_Count_2 = colDef(name = "Count for Cluster 2", filterable = FALSE),
+            across_Count_3 = colDef(name = "Count for Cluster 3", filterable = FALSE),
+            across_Count_4 = colDef(name = "Count for Cluster 4", filterable = FALSE),
+            across_Count_5 = colDef(name = "Count for Cluster 5", filterable = FALSE),
+            across_Count_6 = colDef(name = "Count for Cluster 6", filterable = FALSE),
+            across_Count_7 = colDef(name = "Count for Cluster 7", filterable = FALSE),
+            across_Count_8 = colDef(name = "Count for Cluster 8", filterable = FALSE),
+            across_Count_9 = colDef(name = "Count for Cluster 9", filterable = FALSE),
+            across_Count_10 = colDef(name = "Count for Cluster 10", filterable = FALSE),
+            across_Count_11 = colDef(name = "Count for Cluster 11", filterable = FALSE),
+            across_Count_12 = colDef(name = "Count for Cluster 12", filterable = FALSE),
+            across_Count_13 = colDef(name = "Count for Cluster 13", filterable = FALSE),
+            across_Count_14 = colDef(name = "Count for Cluster 14", filterable = FALSE),
+            across_Count_15 = colDef(name = "Count for Cluster 15", filterable = FALSE),
+            across_Count_16 = colDef(name = "Count for Cluster 16", filterable = FALSE),
+            across_Count_17 = colDef(name = "Count for Cluster 17", filterable = FALSE),
+            across_Ratio_1 = colDef(name = "Ratio for Cluster 1", filterable = FALSE,
+                                    style = function(value) {
+                                      normalized <- (value / 1)
+                                      color <- colors2(normalized)
+                                      list(background = color)}),
+            across_Ratio_2 = colDef(name = "Ratio for Cluster 2", filterable = FALSE,
+                                    style = function(value) {
+                                      normalized <- (value / 1)
+                                      color <- colors2(normalized)
+                                      list(background = color)}),
+            across_Ratio_3 = colDef(name = "Ratio for Cluster 3", filterable = FALSE,
+                                    style = function(value) {
+                                      normalized <- (value / 1)
+                                      color <- colors2(normalized)
+                                      list(background = color)}),
+            across_Ratio_4 = colDef(name = "Ratio for Cluster 4", filterable = FALSE,
+                                    style = function(value) {
+                                      normalized <- (value / 1)
+                                      color <- colors2(normalized)
+                                      list(background = color)}),
+            across_Ratio_5 = colDef(name = "Ratio for Cluster 5", filterable = FALSE,
+                                    style = function(value) {
+                                      normalized <- (value / 1)
+                                      color <- colors2(normalized)
+                                      list(background = color)}),
+            across_Ratio_6 = colDef(name = "Ratio for Cluster 6", filterable = FALSE,
+                                    style = function(value) {
+                                      normalized <- (value / 1)
+                                      color <- colors2(normalized)
+                                      list(background = color)}),
+            across_Ratio_7 = colDef(name = "Ratio for Cluster 7", filterable = FALSE,
+                                    style = function(value) {
+                                      normalized <- (value / 1)
+                                      color <- colors2(normalized)
+                                      list(background = color)}),
+            across_Ratio_8 = colDef(name = "Ratio for Cluster 8", filterable = FALSE,
+                                    style = function(value) {
+                                      normalized <- (value / 1)
+                                      color <- colors2(normalized)
+                                      list(background = color)}),
+            across_Ratio_9 = colDef(name = "Ratio for Cluster 9", filterable = FALSE,
+                                    style = function(value) {
+                                      normalized <- (value / 1)
+                                      color <- colors2(normalized)
+                                      list(background = color)}),
+            across_Ratio_10 = colDef(name = "Ratio for Cluster 10", filterable = FALSE,
+                                     style = function(value) {
+                                       normalized <- (value / 1)
+                                       color <- colors2(normalized)
+                                       list(background = color)}),
+            across_Ratio_11 = colDef(name = "Ratio for Cluster 11", filterable = FALSE,
+                                     style = function(value) {
+                                       normalized <- (value / 1)
+                                       color <- colors2(normalized)
+                                       list(background = color)}),
+            across_Ratio_12 = colDef(name = "Ratio for Cluster 12", filterable = FALSE,
+                                     style = function(value) {
+                                       normalized <- (value / 1)
+                                       color <- colors2(normalized)
+                                       list(background = color)}),
+            across_Ratio_13 = colDef(name = "Ratio for Cluster 13", filterable = FALSE,
+                                     style = function(value) {
+                                       normalized <- (value / 1)
+                                       color <- colors2(normalized)
+                                       list(background = color)}),
+            across_Ratio_14 = colDef(name = "Ratio for Cluster 14", filterable = FALSE,
+                                     style = function(value) {
+                                       normalized <- (value / 1)
+                                       color <- colors2(normalized)
+                                       list(background = color)}),
+            across_Ratio_15 = colDef(name = "Ratio for Cluster 15", filterable = FALSE,
+                                     style = function(value) {
+                                       normalized <- (value / 1)
+                                       color <- colors2(normalized)
+                                       list(background = color)}),
+            across_Ratio_16 = colDef(name = "Ratio for Cluster 16", filterable = FALSE,
+                                     style = function(value) {
+                                       normalized <- (value / 1)
+                                       color <- colors2(normalized)
+                                       list(background = color)}),
+            across_Ratio_17 = colDef(name = "Ratio for Cluster 17", filterable = FALSE,
+                                     style = function(value) {
+                                       normalized <- (value / 1)
+                                       color <- colors2(normalized)
+                                       list(background = color)})),
+          columnGroups = list(
+            colGroup(name = "Within Clusters", columns = c('in_Count_1', 'in_Count_2', 'in_Count_3', 'in_Count_4', 'in_Count_5', 'in_Count_6', 
+                                                           'in_Count_7', 'in_Count_8', 'in_Count_9', 'in_Count_10', 'in_Count_11', 'in_Count_12', 
+                                                           'in_Count_13', 'in_Count_14', 'in_Count_15', 'in_Count_16', 'in_Count_17', 'in_Ratio_1', 
+                                                           'in_Ratio_2', 'in_Ratio_3', 'in_Ratio_4', 'in_Ratio_5', 'in_Ratio_6', 'in_Ratio_7', 
+                                                           'in_Ratio_8', 'in_Ratio_9', 'in_Ratio_10', 'in_Ratio_11', 'in_Ratio_12', 'in_Ratio_13', 
+                                                           'in_Ratio_14', 'in_Ratio_15', 'in_Ratio_16', 'in_Ratio_17')),
+            colGroup(name = "Across Clusters", columns = c('across_Count_1', 'across_Count_2', 'across_Count_3', 'across_Count_4', 'across_Count_5', 
+                                                           'across_Count_6', 'across_Count_7', 'across_Count_8', 'across_Count_9', 'across_Count_10', 
+                                                           'across_Count_11', 'across_Count_12', 'across_Count_13', 'across_Count_14', 'across_Count_15', 
+                                                           'across_Count_16', 'across_Count_17', 'across_Ratio_1', 'across_Ratio_2', 'across_Ratio_3', 
+                                                           'across_Ratio_4', 'across_Ratio_5', 'across_Ratio_6', 'across_Ratio_7', 'across_Ratio_8', 
+                                                           'across_Ratio_9', 'across_Ratio_10', 'across_Ratio_11', 'across_Ratio_12', 'across_Ratio_13', 
+                                                           'across_Ratio_14', 'across_Ratio_15', 'across_Ratio_16', 'across_Ratio_17'))
+          )
+)
+
+# Viewing table
+within_and_across_table
+
+# Exporting html
+saveWidget(within_and_across_table, "within_and_across_table.html", selfcontained = TRUE)
+
+# Static within ratio table
+within_ratio <- reactable(within_ratio,
+                   defaultColDef = colDef(
+                     align = "center",
+                     minWidth = 65,
+                     headerStyle = list(background = "#f7f7f8")),
+                   style = "font-size: 15px",
+                   bordered = TRUE,
+                   highlight = TRUE,
+                   sortable = FALSE,
+                   pagination = FALSE,
+                   columns = list(
+                     Emotion = colDef(minWidth = 130,
+                                      style = list(position = "sticky", left = 0, background = "#f7f7f8", zIndex = 1)),
+                     in_Ratio_1 = colDef(name = "Ratio in Cluster 1", filterable = FALSE, 
+                                         style = function(value) {
+                                           normalized <- (value - min(within_ratio$in_Ratio_1)) / (max(within_ratio$in_Ratio_1) - min(within_ratio$in_Ratio_1))
+                                           color <- colors(normalized)
+                                           list(background = color)}),
+                     in_Ratio_2 = colDef(name = "Ratio in Cluster 2", filterable = FALSE,
+                                         style = function(value) {
+                                           normalized <- (value - min(within_ratio$in_Ratio_2)) / (max(within_ratio$in_Ratio_2) - min(within_ratio$in_Ratio_2))
+                                           color <- colors(normalized)
+                                           list(background = color)}),
+                     in_Ratio_3 = colDef(name = "Ratio in Cluster 3", filterable = FALSE,
+                                         style = function(value) {
+                                           normalized <- (value - min(within_ratio$in_Ratio_3)) / (max(within_ratio$in_Ratio_3) - min(within_ratio$in_Ratio_3))
+                                           color <- colors(normalized)
+                                           list(background = color)}),
+                     in_Ratio_4 = colDef(name = "Ratio in Cluster 4", filterable = FALSE,
+                                         style = function(value) {
+                                           normalized <- (value - min(within_ratio$in_Ratio_4)) / (max(within_ratio$in_Ratio_4) - min(within_ratio$in_Ratio_4))
+                                           color <- colors(normalized)
+                                           list(background = color)}),
+                     in_Ratio_5 = colDef(name = "Ratio in Cluster 5", filterable = FALSE,
+                                         style = function(value) {
+                                           normalized <- (value - min(within_ratio$in_Ratio_5)) / (max(within_ratio$in_Ratio_5) - min(within_ratio$in_Ratio_5))
+                                           color <- colors(normalized)
+                                           list(background = color)}),
+                     in_Ratio_6 = colDef(name = "Ratio in Cluster 6", filterable = FALSE,
+                                         style = function(value) {
+                                           normalized <- (value - min(within_ratio$in_Ratio_6)) / (max(within_ratio$in_Ratio_6) - min(within_ratio$in_Ratio_6))
+                                           color <- colors(normalized)
+                                           list(background = color)}),
+                     in_Ratio_7 = colDef(name = "Ratio in Cluster 7", filterable = FALSE,
+                                         style = function(value) {
+                                           normalized <- (value - min(within_ratio$in_Ratio_7)) / (max(within_ratio$in_Ratio_7) - min(within_ratio$in_Ratio_7))
+                                           color <- colors(normalized)
+                                           list(background = color)}),
+                     in_Ratio_8 = colDef(name = "Ratio in Cluster 8", filterable = FALSE,
+                                         style = function(value) {
+                                           normalized <- (value - min(within_ratio$in_Ratio_8)) / (max(within_ratio$in_Ratio_8) - min(within_ratio$in_Ratio_8))
+                                           color <- colors(normalized)
+                                           list(background = color)}),
+                     in_Ratio_9 = colDef(name = "Ratio in Cluster 9", filterable = FALSE,
+                                         style = function(value) {
+                                           normalized <- (value - min(within_ratio$in_Ratio_9)) / (max(within_ratio$in_Ratio_9) - min(within_ratio$in_Ratio_9))
+                                           color <- colors(normalized)
+                                           list(background = color)}),
+                     in_Ratio_10 = colDef(name = "Ratio in Cluster 10", filterable = FALSE,
+                                          style = function(value) {
+                                            normalized <- (value - min(within_ratio$in_Ratio_10)) / (max(within_ratio$in_Ratio_10) - min(within_ratio$in_Ratio_10))
+                                            color <- colors(normalized)
+                                            list(background = color)}),
+                     in_Ratio_11 = colDef(name = "Ratio in Cluster 11", filterable = FALSE,
+                                          style = function(value) {
+                                            normalized <- (value - min(within_ratio$in_Ratio_11)) / (max(within_ratio$in_Ratio_11) - min(within_ratio$in_Ratio_11))
+                                            color <- colors(normalized)
+                                            list(background = color)}),
+                     in_Ratio_12 = colDef(name = "Ratio in Cluster 12", filterable = FALSE,
+                                          style = function(value) {
+                                            normalized <- (value - min(within_ratio$in_Ratio_12)) / (max(within_ratio$in_Ratio_12) - min(within_ratio$in_Ratio_12))
+                                            color <- colors(normalized)
+                                            list(background = color)}),
+                     in_Ratio_13 = colDef(name = "Ratio in Cluster 13", filterable = FALSE,
+                                          style = function(value) {
+                                            normalized <- (value - min(within_ratio$in_Ratio_13)) / (max(within_ratio$in_Ratio_13) - min(within_ratio$in_Ratio_13))
+                                            color <- colors(normalized)
+                                            list(background = color)}),
+                     in_Ratio_14 = colDef(name = "Ratio in Cluster 14", filterable = FALSE,
+                                          style = function(value) {
+                                            normalized <- (value - min(within_ratio$in_Ratio_14)) / (max(within_ratio$in_Ratio_14) - min(within_ratio$in_Ratio_14))
+                                            color <- colors(normalized)
+                                            list(background = color)}),
+                     in_Ratio_15 = colDef(name = "Ratio in Cluster 15", filterable = FALSE,
+                                          style = function(value) {
+                                            normalized <- (value - min(within_ratio$in_Ratio_15)) / (max(within_ratio$in_Ratio_15) - min(within_ratio$in_Ratio_15))
+                                            color <- colors(normalized)
+                                            list(background = color)}),
+                     in_Ratio_16 = colDef(name = "Ratio in Cluster 16", filterable = FALSE,
+                                          style = function(value) {
+                                            normalized <- (value - min(within_ratio$in_Ratio_16)) / (max(within_ratio$in_Ratio_16) - min(within_ratio$in_Ratio_16))
+                                            color <- colors(normalized)
+                                            list(background = color)}),
+                     in_Ratio_17 = colDef(name = "Ratio in Cluster 17", filterable = FALSE,
+                                          style = function(value) {
+                                            normalized <- (value - min(within_ratio$in_Ratio_17)) / (max(within_ratio$in_Ratio_17) - min(within_ratio$in_Ratio_17))
+                                            color <- colors(normalized)
+                                            list(background = color)})),
+                   columnGroups = list(
+                     colGroup(name = "Within Clusters", columns = c('in_Ratio_1', 'in_Ratio_2', 'in_Ratio_3', 'in_Ratio_4', 'in_Ratio_5', 
+                                                                    'in_Ratio_6', 'in_Ratio_7', 'in_Ratio_8', 'in_Ratio_9', 'in_Ratio_10', 
+                                                                    'in_Ratio_11', 'in_Ratio_12', 'in_Ratio_13', 'in_Ratio_14', 
+                                                                    'in_Ratio_15', 'in_Ratio_16', 'in_Ratio_17'))
+                   )
+)
+
+# Exporting html and png
+saveWidget(within_ratio, "within_ratio.html", selfcontained = TRUE)
+webshot("within_ratio.html", "within_ratio.png", delay = 0.2, vwidth = 1345, zoom = 5)
+
+
+# Static across ratio table
+across_ratio <- reactable(across_ratio,
+                   defaultColDef = colDef(
+                     align = "center",
+                     minWidth = 65,
+                     headerStyle = list(background = "#f7f7f8")),
+                   style = "font-size: 15px",
+                   bordered = TRUE,
+                   highlight = TRUE,
+                   sortable = FALSE,
+                   pagination = FALSE,
+                   columns = list(
+                     Emotion = colDef(minWidth = 130,
+                                      style = list(position = "sticky", left = 0, background = "#f7f7f8", zIndex = 1)),
+                     across_Ratio_1 = colDef(name = "Ratio for Cluster 1", filterable = FALSE,
+                                             style = function(value) {
+                                               normalized <- (value / 1)
+                                               color <- colors2(normalized)
+                                               list(background = color)}),
+                     across_Ratio_2 = colDef(name = "Ratio for Cluster 2", filterable = FALSE,
+                                             style = function(value) {
+                                               normalized <- (value / 1)
+                                               color <- colors2(normalized)
+                                               list(background = color)}),
+                     across_Ratio_3 = colDef(name = "Ratio for Cluster 3", filterable = FALSE,
+                                             style = function(value) {
+                                               normalized <- (value / 1)
+                                               color <- colors2(normalized)
+                                               list(background = color)}),
+                     across_Ratio_4 = colDef(name = "Ratio for Cluster 4", filterable = FALSE,
+                                             style = function(value) {
+                                               normalized <- (value / 1)
+                                               color <- colors2(normalized)
+                                               list(background = color)}),
+                     across_Ratio_5 = colDef(name = "Ratio for Cluster 5", filterable = FALSE,
+                                             style = function(value) {
+                                               normalized <- (value / 1)
+                                               color <- colors2(normalized)
+                                               list(background = color)}),
+                     across_Ratio_6 = colDef(name = "Ratio for Cluster 6", filterable = FALSE,
+                                             style = function(value) {
+                                               normalized <- (value / 1)
+                                               color <- colors2(normalized)
+                                               list(background = color)}),
+                     across_Ratio_7 = colDef(name = "Ratio for Cluster 7", filterable = FALSE,
+                                             style = function(value) {
+                                               normalized <- (value / 1)
+                                               color <- colors2(normalized)
+                                               list(background = color)}),
+                     across_Ratio_8 = colDef(name = "Ratio for Cluster 8", filterable = FALSE,
+                                             style = function(value) {
+                                               normalized <- (value / 1)
+                                               color <- colors2(normalized)
+                                               list(background = color)}),
+                     across_Ratio_9 = colDef(name = "Ratio for Cluster 9", filterable = FALSE,
+                                             style = function(value) {
+                                               normalized <- (value / 1)
+                                               color <- colors2(normalized)
+                                               list(background = color)}),
+                     across_Ratio_10 = colDef(name = "Ratio for Cluster 10", filterable = FALSE,
+                                              style = function(value) {
+                                                normalized <- (value / 1)
+                                                color <- colors2(normalized)
+                                                list(background = color)}),
+                     across_Ratio_11 = colDef(name = "Ratio for Cluster 11", filterable = FALSE,
+                                              style = function(value) {
+                                                normalized <- (value / 1)
+                                                color <- colors2(normalized)
+                                                list(background = color)}),
+                     across_Ratio_12 = colDef(name = "Ratio for Cluster 12", filterable = FALSE,
+                                              style = function(value) {
+                                                normalized <- (value / 1)
+                                                color <- colors2(normalized)
+                                                list(background = color)}),
+                     across_Ratio_13 = colDef(name = "Ratio for Cluster 13", filterable = FALSE,
+                                              style = function(value) {
+                                                normalized <- (value / 1)
+                                                color <- colors2(normalized)
+                                                list(background = color)}),
+                     across_Ratio_14 = colDef(name = "Ratio for Cluster 14", filterable = FALSE,
+                                              style = function(value) {
+                                                normalized <- (value / 1)
+                                                color <- colors2(normalized)
+                                                list(background = color)}),
+                     across_Ratio_15 = colDef(name = "Ratio for Cluster 15", filterable = FALSE,
+                                              style = function(value) {
+                                                normalized <- (value / 1)
+                                                color <- colors2(normalized)
+                                                list(background = color)}),
+                     across_Ratio_16 = colDef(name = "Ratio for Cluster 16", filterable = FALSE,
+                                              style = function(value) {
+                                                normalized <- (value / 1)
+                                                color <- colors2(normalized)
+                                                list(background = color)}),
+                     across_Ratio_17 = colDef(name = "Ratio for Cluster 17", filterable = FALSE,
+                                              style = function(value) {
+                                                normalized <- (value / 1)
+                                                color <- colors2(normalized)
+                                                list(background = color)})),
+                   columnGroups = list(
+                     colGroup(name = "Across Clusters", columns = c('across_Ratio_1', 'across_Ratio_2', 'across_Ratio_3', 
+                                                                    'across_Ratio_4', 'across_Ratio_5', 'across_Ratio_6', 'across_Ratio_7', 'across_Ratio_8', 
+                                                                    'across_Ratio_9', 'across_Ratio_10', 'across_Ratio_11', 'across_Ratio_12', 'across_Ratio_13', 
+                                                                    'across_Ratio_14', 'across_Ratio_15', 'across_Ratio_16', 'across_Ratio_17'))
+                   )
+)
+
+# Exporting html and png
+saveWidget(across_ratio, "across_ratio.html", selfcontained = TRUE)
+webshot("across_ratio.html", "across_ratio.png", delay = 0.2, vwidth = 1345, zoom = 5)
