@@ -10,9 +10,9 @@ library(webshot)
 library(htmlwidgets)
 
 # Importing datasets
-within_and_across <- read.csv("C:/Users/cansu.hurses/Desktop/within_and_across_table.csv")
-within_ratio <- read.csv("C:/Users/cansu.hurses/Desktop/within_ratio_table.csv")
-across_ratio <- read.csv("C:/Users/cansu.hurses/Desktop/across_ratio_table.csv")
+within_and_across <- read.csv("https://raw.githubusercontent.com/tahasarnic/positive-emotions/main/Visualization%20of%20Chord%20Diagrams%20and%20Tables/Data/within_and_across_table.csv")
+within_ratio <- read.csv("https://raw.githubusercontent.com/tahasarnic/positive-emotions/main/Visualization%20of%20Chord%20Diagrams%20and%20Tables/Data/within_ratio_table.csv")
+across_ratio <- read.csv("https://raw.githubusercontent.com/tahasarnic/positive-emotions/main/Visualization%20of%20Chord%20Diagrams%20and%20Tables/Data/across_ratio_table.csv")
 
 # Determining colors of table
 sticky_style <- list(backgroundColor = "#f7f7f7")

@@ -16,7 +16,7 @@ library(htmltools)
 ## Within Clusters
 
 # Importing dataset
-within_17_chord <- read.csv("~/Data/within_17_chord.csv")
+within_17_chord <- read.csv("https://raw.githubusercontent.com/tahasarnic/positive-emotions/main/Visualization%20of%20Chord%20Diagrams%20and%20Tables/Data/within_17_chord.csv")
 
 # Manipulation on dataset
 within_17_chord = as.matrix(within_17_chord)
@@ -46,7 +46,7 @@ webshot("within_chord.html", "within_chord.png", delay = 0.2, vwidth = 900, zoom
 ## Across Clusters
 
 # Importing dataset
-across_17_chord <- read.csv("C:/Users/cansu.hurses/Desktop/across_17_chord.csv")
+across_17_chord <- read.csv("https://raw.githubusercontent.com/tahasarnic/positive-emotions/main/Visualization%20of%20Chord%20Diagrams%20and%20Tables/Data/across_17_chord.csv")
 
 # Manipulation on dataset
 across_17_chord = as.matrix(across_17_chord)
